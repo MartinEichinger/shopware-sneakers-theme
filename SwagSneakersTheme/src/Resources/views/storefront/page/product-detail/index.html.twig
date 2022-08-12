@@ -1,0 +1,94 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block base_head %}
+    {% sw_include '@Storefront/storefront/page/product-detail/meta.html.twig' %}
+{% endblock %}
+
+{% block base_content %}
+    {% block page_product_detail %}
+
+        <div class="product-detail"
+             itemscope
+             itemtype="https://schema.org/Product">
+            {% block page_product_detail_inner %}
+                {% block page_product_detail_content %}
+                    <div class="product-detail-content">
+                        {% block page_product_detail_headline %}
+                        {% endblock %}
+
+                        {% set mediaItems = page.product.media.media %}
+
+                        {% block page_product_detail_main %}
+                            <div class="row product-detail-main">
+                                {% block page_product_detail_media %}
+                                    <div class="col-lg-7 product-detail-media">
+                                        {% if page.product.media %}
+                                            {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                                                'mediaItems': mediaItems,
+                                                'zoom': false,
+                                                'zoomModal': true,
+                                                'displayMode': 'contain',
+                                                'gutter': 5,
+                                                'minHeight': '445px',
+                                                'navigationArrows': false,
+                                                'navigationDots': false,
+                                                'galleryPosition': 'underneath',
+                                                'isProduct': true,
+                                                'fallbackImageTitle': page.product.translated.name,
+                                                'startIndexThumbnails': 1,
+                                                'startIndexSlider': 1,
+                                                'keepAspectRatioOnZoom': false
+                                            } %}
+                                        {% endif %}
+                                    </div>
+                                {% endblock %}
+
+                                {% block page_product_detail_buy %}
+                                    <div class="col-lg-5 product-detail-buy">
+                                        {% block page_product_detail_manufacturer %}
+                                            {% if page.product.manufacturer %}
+                                                <div class="col-md-auto product-detail-manufacturer">
+                                                    {% block page_product_detail_manufacturer_inner %}
+                                                        {% block page_product_detail_manufacturer_link %}
+                                                            <a href="{{ page.product.manufacturer.link }}"
+                                                               class="product-detail-manufacturer-link"
+                                                               rel="noreferrer noopener"
+                                                               target="_blank"
+                                                               title="{{ page.product.manufacturer.translated.name }}">
+                                                                {% if page.product.manufacturer.media %}
+                                                                    {% block page_product_detail_manufacturer_logo %}
+                                                                        <img src="{{ page.product.manufacturer.media|sw_encode_media_url }}"
+                                                                             class="product-detail-manufacturer-logo"
+                                                                             alt="{{ page.product.manufacturer.translated.name }}"/>
+                                                                    {% endblock %}
+                                                                {% else %}
+                                                                    {% block page_product_detail_manufacturer_text %}
+                                                                        {{ page.product.manufacturer.translated.name }}
+                                                                    {% endblock %}
+                                                                {% endif %}
+                                                            </a>
+                                                        {% endblock %}
+                                                    {% endblock %}
+                                                </div>
+                                            {% endif %}
+                                        {% endblock %}
+
+                                        {% block page_product_detail_name %}
+                                            <h1 class="product-detail-name"
+                                                itemprop="name">
+                                                {{ page.product.translated.name }}
+                                            </h1>
+                                        {% endblock %}
+
+                                        {% sw_include '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+                                    </div>
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}
+

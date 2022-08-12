@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+
+    {% block page_product_detail_price %}
+        {% if page.product.description|length >= 0 %}
+            <p>{{ page.product.description }}</p>
+        {% endif %}
+
+        <div class="product-detail-price-container d-flex flex-row flex-sm-column align-items-center align-items-sm-start justify-content-between">
+            {% sw_include '@Storefront/storefront/page/product-detail/buy-widget-price.html.twig' %}
+        </div>
+    {% endblock %}
+
+    {% block page_product_detail_tax %}
+    {% endblock %}
+
+    {% block page_product_detail_ordernumber_container %}
+    {% endblock %}

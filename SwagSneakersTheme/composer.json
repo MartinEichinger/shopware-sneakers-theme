@@ -1,0 +1,19 @@
+{
+  "name": "swag/sneakers-theme",
+  "description": "Theme Sneakers Plugin",
+  "version": "v1.0.10",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SwagSneakersTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SwagSneakersTheme\\SwagSneakersTheme",
+    "label": {
+      "de-DE": "Theme SwagSneakersTheme plugin",
+      "en-GB": "Theme SwagSneakersTheme plugin"
+    }
+  }
+}
